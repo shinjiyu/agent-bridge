@@ -1,0 +1,8 @@
+--- a/starter/tools.py
++++ b/starter/tools.py
+@@
+-def calc(expr: str) -> str:
+-    raise NotImplementedError
++def calc(expr: str) -> str:
++    # hint: walk ast; only allow operator nodes + numbers
++    ...

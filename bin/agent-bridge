@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+# Dev wrapper: run CLI from the monorepo without global install.
+set -euo pipefail
+ROOT="$(cd "$(dirname "$0")/.." && pwd)"
+if [[ -f "$ROOT/packages/cli/dist/bin.js" ]]; then
+  exec node "$ROOT/packages/cli/dist/bin.js" "$@"
+fi
+exec node --import tsx "$ROOT/packages/cli/src/bin.ts" "$@"

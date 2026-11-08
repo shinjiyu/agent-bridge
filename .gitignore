@@ -1,0 +1,13 @@
+node_modules/
+dist/
+*.sqlite
+.DS_Store
+.venv/
+__pycache__/
+.pytest_cache/
+*.pyc
+.agent-bridge/
+workspace/
+*.egg-info/
+.coverage
+htmlcov/

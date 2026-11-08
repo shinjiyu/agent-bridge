@@ -1,0 +1,14 @@
+{
+  "subject": "Cursor Agent",
+  "can": [
+    {"claim": "", "evidence": ""}
+  ],
+  "cannot": [
+    {"claim": "", "evidence": ""}
+  ],
+  "costs": [
+    {"kind": "time", "claim": "", "evidence": ""},
+    {"kind": "money", "claim": "", "evidence": ""},
+    {"kind": "risk", "claim": "", "evidence": ""}
+  ]
+}
