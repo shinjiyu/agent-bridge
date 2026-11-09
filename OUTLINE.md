@@ -3,7 +3,21 @@
 面向个人的「程序员 → AI Agent 工程师」转型课。  
 交付形态：**课程 Git 仓库 + Cursor / Claude Code Skill**；系统只做进度与评分，不做网页课堂；不绑硬件。
 
-Skill 包职责：在 **Chat** 里当教练——开课、推进、提问、代跑 CLI、按学生意图改结业仓库。
+Skill 包职责：在 **Chat** 里当教练——按**模板序列**开课、推进、代跑 CLI、按学生意图改结业仓库。
+
+### Coach 核心模板
+
+| Id | 名称 | 用途 |
+|----|------|------|
+| `explain` | 说明型 | 短资料阅读 |
+| `ask` | 追问型 | 三问 / 范围，少讲多问 |
+| `experiment` | 实验型 | 当场试，口述现象 |
+| `choose` | 抉择型 | 选项 + 一句理由 |
+| `assign` | 作业型 | 小产物 + Coach 审核 |
+| `gate` | 验收门 | 跑检查，通才解锁 |
+
+规格：`packages/coach-skill/templates/`。模块用 README 头 `templates:` 声明顺序。  
+第一课示例：`explain → experiment → ask → assign → gate`（禁止问卷式 answers.json）。
 
 ---
 
@@ -194,8 +208,8 @@ Skill 包职责：在 **Chat** 里当教练——开课、推进、提问、代�
 一条线：**立学法 → 逐 token → 工具 → 通用 Agent vs Graph → 常见结构 → Harness 面长进系统 → 冒烟结业**。
 
 ### M0 · 学法与结业壳
-- 三问 + 提问；结业 = 一套 Agent；提纲不列否定清单  
-- 验收：契约 + 结业仓库空壳  
+- 模板：`explain → experiment → ask → assign → gate`  
+- 产物：`my-agent/README.md` + 短 `log.md`；不填问卷  
 
 ### M1 · 提问练习
 - 对底座与结业物先写问题清单  
@@ -261,5 +275,5 @@ Skill 包职责：在 **Chat** 里当教练——开课、推进、提问、代�
 
 - 怎么学 = 三问 + 提问；知识底座 = 逐 token 自回归，再接 harness-articles  
 - 结业物 = `workspace/my-agent`；冒烟验收  
-- **交互 = Chat 完成一切操作**；Coach 写 `starter/answers.json`  
-- `curriculum/` 已按 M0–M9 重铺；试用时勿再走「手改 starter + 终端 grade」旧路径  
+- **交互 = Chat + 六模板**；M0 已按模板序列重写  
+- M1–M9 待从 `answers.json` 迁到同一模板框架  

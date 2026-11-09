@@ -1,34 +1,40 @@
+---
+templates:
+  - explain
+  - experiment
+  - ask
+  - assign
+  - gate
+---
+
 # Module 0 — 学法与结业壳
 
-**时长**：约 1 小时  
-**对应大纲**：M0 / 怎么学 = 三问 + 提问
+**时长**：约 20–40 分钟  
+**模板序列**：说明 → 实验 → 追问 → 作业 → 验收门
 
-## 怎么学这一课（交互）
+Coach 按序列推进；细节见 `packages/coach-skill/templates/`。
 
-**只在 Cursor Chat 里完成。** 可以打开本 README 阅读。
+## 说明型（读这个就够）
 
-1. 对 Coach 说你的回答 / 决定（提问、三问、范围）。
-2. 让 Coach **把结论写入** `starter/`（你不要离开对话去手改作业当主路径）。
-3. 在 Chat 说「帮我评分」——由 Coach 跑 `agent-bridge grade`。
+学法只有两条：
 
-Coach 不得替你编造没有依据的「能 / 成本」；必须来自你在对话里说过的内容。
+1. **三问**：能做什么、成本多少；碰到具体主张再用证据问边界（不列「不能」清单）。
+2. **提问**：用问题推进；先别啃实现。
 
+结业物后面会在 `my-agent/` 里长成一套通用 Agent。这一课先立约定、建空壳。
 
-## 目标
+## 实验型
 
-1. 立下学习契约：三问（能 / 边界用证据个案 / 成本）；提纲不列「不能」目录。
-2. 初始化结业仓库壳：`workspace/my-agent/`（后面课往这里长）。
+当场对 Cursor 做 **一次** 小事（改个文件或跑条命令），用一两句话说清现象。
 
-## 在 Chat 里要完成的事
+## 追问型
 
-对 Coach 说明，并让其写入 `starter/answers.json`：
+基于刚才的现象，Coach 只追两问：能稳住什么？成本你先想到哪一类？
 
-- `chat_only_ack`: true（你确认主界面是 Chat）
-- `can`: ≥2 条，每条 `claim` + `evidence`（≥20 字）——关于「用 Chat 驱动学习 / Cursor Agent」你亲眼见过的能力
-- `costs`: ≥3 条，kinds 须覆盖 `time`、`money`、`risk`
-- `boundaries`（可选）: 0+ 条证据个案；**不要**为凑数编否定清单
-- `graduation_ready`: true，且磁盘上存在 `../my-agent/README.md`（相对本模块目录，即 workspace/my-agent）
+## 作业型
 
-## 验收
+在 workspace 建 `my-agent/README.md`（说明这是结业 Agent 仓库即可）。Chat 里让 Coach 写；你说「审核」。
 
-`agent-bridge grade 0`（由 Chat 里的 Coach 执行）
+## 验收门
+
+`agent-bridge grade 0`：存在 `my-agent/README.md`（≥20 字）且 `00-method/starter/log.md` 含实验与追问留痕。

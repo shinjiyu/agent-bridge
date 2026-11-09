@@ -5,7 +5,8 @@
 ## 交互形式
 
 **主界面是 Chat。** 可以打开文件阅读；不要离开对话去手写课程代码。  
-下一课、三问、改 `my-agent`、评分，都在对话里完成（Coach 代跑 CLI、按你的意图写 `starter/`）。
+Coach 按模板推进：说明 / 追问 / 实验 / 抉择 / 作业 / 验收门（见 `packages/coach-skill/templates/`）。  
+你负责读、答、选、说「审核」「验收」；Coach 改仓库并跑 grade。
 
 ## 依赖
 
