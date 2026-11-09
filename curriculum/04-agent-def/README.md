@@ -1,32 +1,30 @@
-# Module 4 — 通用 Agent、ReAct 与 Graph
+---
+templates:
+  - explain
+  - ask
+  - choose
+  - gate
+---
 
-**时长**：约 2 小时  
-**对应大纲**：K2 / M4
+# Module 4 — 通用 Agent / ReAct vs Graph
 
-## 怎么学这一课（交互）
+**模板**：说明 → 追问 → 抉择 → 验收门  
+**对应**：K2
 
-**只在 Cursor Chat 里完成。** 可以打开本 README 阅读。
+## 说明型
 
-1. 对 Coach 说你的回答 / 决定（提问、三问、范围）。
-2. 让 Coach **把结论写入** `starter/`（你不要离开对话去手改作业当主路径）。
-3. 在 Chat 说「帮我评分」——由 Coach 跑 `agent-bridge grade`。
+- **通用 Agent**：任务开放，下一步主要由模型（常靠工具）决定。  
+- **ReAct**：Reason → Act → Observe 的工具环。  
+- **预定 Graph**：控制流在图上 → 本课叫编排/工作流，不叫 Agent。
 
-Coach 不得替你编造没有依据的「能 / 成本」；必须来自你在对话里说过的内容。
+## 追问型
 
+「下一步谁决定——模型还是边？」用自己的话说清差别。
 
-## 要点
+## 抉择型
 
-- 本课 **Agent = 通用 Agent**：任务开放，下一步主要由模型（常靠工具）决定。
-- **ReAct** = 典型工具环（Reason → Act → Observe → …）。
-- **预定 Graph / 工作流** = 编排，**不叫**本课的 Agent。
+结业物确认：主形态是 **通用 Agent**（不是画死业务图）。一句理由。
 
-## 写入 `starter/answers.json`
+## 验收门
 
-- `general_agent_def`: ≥40 字
-- `react_in_own_words`: ≥40 字
-- `graph_is`: 必须是 `"orchestration"` 或中文等价说明里含「编排」或「工作流」
-- `graduation_is_general_agent`: true
-
-## 验收
-
-`grade 4`
+`grade 4`：log 含 explain/ask/choose；choose 声明 general agent；提到 ReAct 或工具环与 Graph/编排差别。

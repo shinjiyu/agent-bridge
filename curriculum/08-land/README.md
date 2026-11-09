@@ -1,30 +1,22 @@
+---
+templates:
+  - ask
+  - assign
+  - gate
+---
+
 # Module 8 — 主结构落地
 
-**时长**：约 8 小时  
-**对应大纲**：M8
+**模板**：追问 → 作业 → 验收门
 
-## 怎么学这一课（交互）
+## 追问型
 
-**只在 Cursor Chat 里完成。** 可以打开本 README 阅读。
+按 SCOPE 里的主结构，说清 **一条真实任务路径**（输入 → 步骤/工具 → 输出）。
 
-1. 对 Coach 说你的回答 / 决定（提问、三问、范围）。
-2. 让 Coach **把结论写入** `starter/`（你不要离开对话去手改作业当主路径）。
-3. 在 Chat 说「帮我评分」——由 Coach 跑 `agent-bridge grade`。
+## 作业型
 
-Coach 不得替你编造没有依据的「能 / 成本」；必须来自你在对话里说过的内容。
+在 `my-agent/` 落地可运行入口（如 `main.py` 或 `agent.py`），体现通用 Agent（工具环即可，允许 mock 工具）。审核通过。
 
+## 验收门
 
-按 Module 5 选定的主结构，在 `my-agent/` 落地**至少一条真实任务路径**（通用 Agent，不是画死业务图交差）。
-
-## 写入 `starter/answers.json`
-
-- `primary_structure`: 与第 5 课一致的 id
-- `task_path_description`: ≥60 字
-- `entry_file`: my-agent 内入口相对路径
-- `is_general_agent`: true
-
-`entry_file` 必须存在。
-
-## 验收
-
-`grade 8`
+`grade 8`：入口文件存在；log 含任务路径与 assign pass；声明 general agent。

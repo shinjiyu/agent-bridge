@@ -1,54 +1,61 @@
 from __future__ import annotations
-import json, sys
+import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
-STARTER = ROOT / "starter"
-MIN = 20
+WS = ROOT.parent
+LOG = ROOT / "starter" / "log.md"
+AGENT = WS / "my-agent"
 
 def fail(msg: str) -> None:
     print(f"FAIL: {msg}")
     sys.exit(1)
 
-def load(name: str = "answers.json") -> dict:
-    path = STARTER / name
-    if not path.exists():
-        fail(f"缺少 starter/{name}（应在 Chat 里由 Coach 根据你的回答写入）")
-    try:
-        data = json.loads(path.read_text(encoding="utf-8"))
-    except json.JSONDecodeError as e:
-        fail(f"{name} 不是合法 JSON: {e}")
-    if not isinstance(data, dict):
-        fail(f"{name} 必须是对象")
-    return data
+def log_text() -> str:
+    if not LOG.exists():
+        fail("缺少 starter/log.md")
+    return LOG.read_text(encoding="utf-8")
 
-def need_str(data: dict, key: str, min_len: int = MIN) -> str:
-    val = data.get(key)
-    if not isinstance(val, str) or len(val.strip()) < min_len:
-        fail(f"`{key}` 至少 {min_len} 字")
-    return val.strip()
+def need_in_log(*needles: str) -> None:
+    """Each needle may be alt1|alt2."""
+    text = log_text()
+    low = text.lower()
+    for n in needles:
+        alts = [a.strip() for a in n.split("|")]
+        if not any(a.lower() in low or a in text for a in alts):
+            fail(f"log.md 缺少标记/内容: {n}")
 
-def need_list(data: dict, key: str, n: int) -> list:
-    rows = data.get(key)
-    if not isinstance(rows, list) or len(rows) < n:
-        fail(f"`{key}` 至少 {n} 条")
-    return rows
+def need_agent_file(rel: str, min_len: int = 20) -> Path:
+    p = AGENT / rel
+    if not p.exists():
+        fail(f"缺少 my-agent/{rel}")
+    if len(p.read_text(encoding="utf-8").strip()) < min_len:
+        fail(f"my-agent/{rel} 过短（<{min_len}字）")
+    return p
 
-KEYS = ("能", "成本", "token", "工具", "范围", "冒烟", "权限", "can", "cost", "scope", "tool")
+
+KEYS = ("能", "成本", "token", "工具", "范围", "冒烟", "权限", "can", "cost", "scope", "tool", "prefix", "前缀")
 
 def main() -> None:
-    data = load()
-    qs = need_list(data, "questions", 5)
-    hit = 0
-    for i, q in enumerate(qs, 1):
-        if not isinstance(q, str) or len(q.strip()) < 15:
-            fail(f"questions[{i}] 至少 15 字")
-        if any(k.lower() in q.lower() for k in KEYS):
-            hit += 1
+    text = log_text()
+    lines = [ln.strip("- ").strip() for ln in text.splitlines() if ln.strip().startswith(("-", "*")) or ln.strip()[:1].isdigit()]
+    # also accept "Q:" lines
+    for ln in text.splitlines():
+        s = ln.strip()
+        if s.lower().startswith("q:") or s.startswith("问"):
+            lines.append(s)
+    # fallback: numbered questions in ask: block
+    qs = []
+    for ln in text.splitlines():
+        s = ln.strip()
+        if len(s) >= 15 and any(k in s for k in ("？", "?", "吗", "如何", "怎样", "多少", "什么")):
+            qs.append(s)
+    if len(qs) < 5:
+        fail(f"log 中可识别的问题不足 5 条（当前 {len(qs)}）。Coach 请把学生原问写入 log。")
+    hit = sum(1 for q in qs if any(k.lower() in q.lower() for k in KEYS))
     if hit < 3:
-        fail("至少 3 条问题应触及能/成本/机制或范围（看关键词）")
-    if data.get("not_implementation_checklist") is not True:
-        fail("not_implementation_checklist 须为 true")
+        fail("至少 3 条问题应触及能/成本/机制或范围")
+    need_in_log("ask|追问")
     print("OK: Module 1 passed")
 
 if __name__ == "__main__":

@@ -209,42 +209,43 @@ Skill 包职责：在 **Chat** 里当教练——按**模板序列**开课、推
 
 ### M0 · 学法与结业壳
 - 模板：`explain → experiment → ask → assign → gate`  
-- 产物：`my-agent/README.md` + 短 `log.md`；不填问卷  
+- 产物：`my-agent/README.md` + `log.md`  
 
 ### M1 · 提问练习
-- 对底座与结业物先写问题清单  
-- 验收：问题推进「能 / 成本 / 机制」  
+- 模板：`explain → ask → gate`  
+- 产物：log 中 ≥5 个好问题  
 
-### M2 · Token 与逐 token 模型（底座）
-- 对应 K0  
-- 验收：生成如何滚动；各家 token 不可横比  
+### M2 · Token 与逐 token
+- 模板：`explain → ask → gate`（K0）  
+- 产物：log 含 token / 分词器差异 / 逐 token  
 
 ### M3 · 工具入门
-- 对应 K1  
-- 验收：工具如何改前缀再继续吐  
+- 模板：`explain → experiment → ask → gate`（K1）  
+- 产物：一次工具实验现象 + 前缀回写  
 
 ### M4 · 通用 Agent / ReAct vs Graph
-- 对应 K2  
-- 验收：区分通用 Agent 与工作流；结业声明为通用 Agent  
+- 模板：`explain → ask → choose → gate`（K2）  
+- 产物：差别说清；结业选通用 Agent  
 
-### M5 · 常见 Agent 结构
-- 对应 K3：Tool-calling / ReAct / Plan-Execute / Reflexion / CodeAct / 多 Agent / 环境环  
-- 验收：用三问扫过表；选定结业主结构（可写组合）  
+### M5 · 常见结构
+- 模板：`explain → choose → gate`（K3）  
+- 产物：`my-agent/SCOPE.md` 主结构 id  
 
 ### M6 · Harness 地图与范围
-- 对应 K4–K5  
-- 验收：能力与成本图 + 范围声明  
+- 模板：`explain → choose → ask → gate`  
+- 产物：SCOPE 含 ≥3 个面；成本草绘在 log  
 
-### M7 · 成本 / 上下文进系统
-- K6–K7；牵动面可控  
+### M7 · 成本与上下文进系统
+- 模板：`explain → assign → gate`  
+- 产物：`COST.md` + `CONTEXT.md`  
 
-### M8 · 主结构落地（编排与工具环）
-- K8；按 M5 选定的结构实现至少一条真实任务路径  
-- 验收：路径可跑，且是通用 Agent 而非画死业务图交差  
+### M8 · 主结构落地
+- 模板：`ask → assign → gate`  
+- 产物：可运行入口 `.py` + 任务路径（通用 Agent）  
 
 ### M9 · 合约、安全、冒烟结业
-- K9–K11 + 冒烟；K12 选修  
-- 验收：冒烟过 + 说明完整 + 主结构声明一致 → **毕业**  
+- 模板：`explain → assign → gate`  
+- 产物：`CONTRACT.md` + `smoke.py` 跑通 → **毕业**  
 
 ---
 
@@ -275,5 +276,4 @@ Skill 包职责：在 **Chat** 里当教练——按**模板序列**开课、推
 
 - 怎么学 = 三问 + 提问；知识底座 = 逐 token 自回归，再接 harness-articles  
 - 结业物 = `workspace/my-agent`；冒烟验收  
-- **交互 = Chat + 六模板**；M0 已按模板序列重写  
-- M1–M9 待从 `answers.json` 迁到同一模板框架  
+- **交互 = Chat + 六模板**；M0–M9 均已挂模板序列与轻量 gate  

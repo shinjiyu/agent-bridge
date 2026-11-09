@@ -1,33 +1,24 @@
+---
+templates:
+  - explain
+  - choose
+  - gate
+---
+
 # Module 5 — 常见 Agent 结构
 
-**时长**：约 2 小时  
-**对应大纲**：K3 / M5
+**模板**：说明 → 抉择 → 验收门  
+**对应**：K3
 
-## 怎么学这一课（交互）
+## 说明型（结构表，扫一眼）
 
-**只在 Cursor Chat 里完成。** 可以打开本 README 阅读。
+`tool_calling` / `react` / `plan_execute` / `reflexion` / `codeact` / `multi_agent` / `environment`  
+（预定 Graph 不在表内。）
 
-1. 对 Coach 说你的回答 / 决定（提问、三问、范围）。
-2. 让 Coach **把结论写入** `starter/`（你不要离开对话去手改作业当主路径）。
-3. 在 Chat 说「帮我评分」——由 Coach 跑 `agent-bridge grade`。
+## 抉择型
 
-Coach 不得替你编造没有依据的「能 / 成本」；必须来自你在对话里说过的内容。
+选结业 **主结构**（上表之一）+ 一句成本理由。写入 `my-agent/SCOPE.md` 与 log。
 
+## 验收门
 
-## 结构表（扫一遍）
-
-Tool-calling 环 / ReAct / Plan-and-Execute / Reflexion / CodeAct / 多 Agent / 环境环。  
-预定 Graph 不在此表。
-
-## 写入 `starter/answers.json`
-
-- `surveyed`: 数组，至少包含 5 个结构 id（见 starter 注释可选 id）
-- `primary_structure`: 你结业主结构（须在 surveyed 内）
-- `why_primary`: ≥40 字（机制 + 成本直觉）
-- `combo_notes`: 字符串，可空
-
-可选 id：`tool_calling` `react` `plan_execute` `reflexion` `codeact` `multi_agent` `environment`
-
-## 验收
-
-`grade 5`
+`grade 5`：SCOPE.md 含 `primary_structure: <id>`；log 有 choose。

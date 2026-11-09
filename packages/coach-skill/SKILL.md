@@ -34,24 +34,19 @@ Template specs live in this skill folder: `templates/*.md`（说明 / 追问 / �
 3. Move to the next template in the module list.
 4. Final template is usually `gate` → run `agent-bridge grade <id>`.
 
-## Module 0 expected path
+## Template sequences (all modules)
 
-`explain` → `experiment` → `ask` → `assign`（建 `my-agent/README.md`）→ `gate`.
+| Id | Sequence |
+|----|----------|
+| 0 | explain → experiment → ask → assign → gate |
+| 1 | explain → ask → gate |
+| 2 | explain → ask → gate |
+| 3 | explain → experiment → ask → gate |
+| 4 | explain → ask → choose → gate |
+| 5 | explain → choose → gate |
+| 6 | explain → choose → ask → gate |
+| 7 | explain → assign → gate |
+| 8 | ask → assign → gate |
+| 9 | explain → assign → gate |
 
-## Curriculum map
-
-| Id | Focus |
-|----|--------|
-| 0 | 学法与结业壳 |
-| 1 | 提问练习 |
-| 2 | Token / 逐 token |
-| 3 | 工具入门 |
-| 4 | 通用 Agent / ReAct vs Graph |
-| 5 | 常见结构 |
-| 6 | Harness 地图与范围 |
-| 7 | 成本与上下文进 my-agent |
-| 8 | 主结构落地 |
-| 9 | 合约、安全、冒烟结业 |
-
-Later modules still may use older `answers.json` until rewritten onto templates;
-prefer templates + `log.md` whenever you touch a module.
+Always append short stubs to that module's `starter/log.md`. Artifacts for later modules live under `workspace/my-agent/`.

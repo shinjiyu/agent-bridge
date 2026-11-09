@@ -1,1 +1,1 @@
-先在 my-agent 加 COST.md 与 CONTEXT.md 两页也行。
+两页短文档即可。
