@@ -41,6 +41,15 @@ function copyDir(src: string, dest: string): void {
 
 function syncCurriculum(workspace: string): void {
   const root = curriculumRoot();
+  const keep = new Set(MODULES.map((m) => moduleDirName(m)));
+  // Drop legacy module folders (e.g. 00-orient) so chat learners don't open stale lessons
+  if (fs.existsSync(workspace)) {
+    for (const name of fs.readdirSync(workspace)) {
+      if (!/^\d{2}-/.test(name)) continue;
+      if (keep.has(name)) continue;
+      fs.rmSync(path.join(workspace, name), { recursive: true, force: true });
+    }
+  }
   for (const m of MODULES) {
     const name = moduleDirName(m);
     const src = path.join(root, name);
@@ -108,7 +117,9 @@ function cmdInit(args: string[]): void {
   console.log(`Progress:  ~/.agent-bridge/progress.sqlite`);
   console.log(`Coach skill installed: ${skillPath}`);
   console.log(`Also mirrored to ~/.cursor/skills/agent-bridge-coach (if possible)`);
-  console.log(`\nNext: open the workspace in Cursor, then run:\n  agent-bridge next\n  # or ask Coach: 「继续下一课」`);
+  console.log(
+    `\nNext: open the workspace in Cursor Chat and say 「继续下一课」.\nCLI is optional; Coach should run next/grade for you.`,
+  );
 }
 
 function cmdStatus(): void {
@@ -145,9 +156,9 @@ function cmdNext(): void {
   console.log(`当前模块 ${meta.id}: ${meta.title} / ${meta.titleZh}`);
   console.log(`目录: ${dir}`);
   console.log(`预计: ~${meta.hours}h`);
-  console.log(`\n阅读: ${path.join(dir, "README.md")}`);
-  console.log(`实现: ${path.join(dir, "starter")}`);
-  console.log(`验收: agent-bridge grade ${meta.id}`);
+  console.log(`\n阅读（可打开）: ${path.join(dir, "README.md")}`);
+  console.log(`作业在 Chat 完成；Coach 写入: ${path.join(dir, "starter")}`);
+  console.log(`验收：在 Chat 说「帮我评分」（或 agent-bridge grade ${meta.id}）`);
 }
 
 function resolveModuleArg(arg: string | undefined, store: ProgressStore): string {
@@ -199,7 +210,7 @@ function cmdGrade(args: string[]): void {
       console.log("\n恭喜，这是最后一课轨模块。");
     }
   } else {
-    console.log("\n未通过。可向 Coach 请求提示（会记 hint），或再改再 grade。");
+    console.log("\n未通过。在 Chat 里继续提问或要 hint；由 Coach 改 starter 后再 grade。");
   }
   void snap;
 }

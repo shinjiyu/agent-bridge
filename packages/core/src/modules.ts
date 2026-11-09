@@ -1,4 +1,14 @@
-export type ModuleId = "0" | "1" | "2" | "3" | "4" | "5" | "6";
+export type ModuleId =
+  | "0"
+  | "1"
+  | "2"
+  | "3"
+  | "4"
+  | "5"
+  | "6"
+  | "7"
+  | "8"
+  | "9";
 
 export interface ModuleMeta {
   id: ModuleId;
@@ -9,62 +19,86 @@ export interface ModuleMeta {
   unlocks: ModuleId | null;
 }
 
-/** Ordered curriculum. Module 0 is unlocked by default after init. */
+/** Ordered curriculum. Module 0 unlocked after init. Matches OUTLINE.md M0–M9. */
 export const MODULES: ModuleMeta[] = [
   {
     id: "0",
-    slug: "orient",
-    title: "How to learn",
-    titleZh: "学法：能 / 不能 / 成本",
-    hours: 2,
+    slug: "method",
+    title: "Learning method & shell",
+    titleZh: "学法与结业壳",
+    hours: 1,
     unlocks: "1",
   },
   {
     id: "1",
-    slug: "tool-agent",
-    title: "Tool-using Agent",
-    titleZh: "工具循环 Agent",
-    hours: 8,
+    slug: "ask",
+    title: "Question practice",
+    titleZh: "提问练习",
+    hours: 1,
     unlocks: "2",
   },
   {
     id: "2",
-    slug: "mcp-server",
-    title: "Ship an MCP Server",
-    titleZh: "交付一个 MCP Server",
-    hours: 8,
+    slug: "token",
+    title: "Tokens & next-token models",
+    titleZh: "Token 与逐 token 模型",
+    hours: 2,
     unlocks: "3",
   },
   {
     id: "3",
-    slug: "rag-agent",
-    title: "RAG Agent",
-    titleZh: "检索增强 Agent",
-    hours: 8,
+    slug: "tools",
+    title: "Tools into the prefix",
+    titleZh: "工具入门",
+    hours: 2,
     unlocks: "4",
   },
   {
     id: "4",
-    slug: "eval-obs",
-    title: "Eval & Observability",
-    titleZh: "评测与可观测性",
-    hours: 6,
+    slug: "agent-def",
+    title: "General agent vs graph",
+    titleZh: "通用 Agent 与 Graph",
+    hours: 2,
     unlocks: "5",
   },
   {
     id: "5",
-    slug: "guardrails",
-    title: "Production Guardrails",
-    titleZh: "生产护栏与部署",
-    hours: 6,
+    slug: "structures",
+    title: "Common agent structures",
+    titleZh: "常见 Agent 结构",
+    hours: 2,
     unlocks: "6",
   },
   {
     id: "6",
-    slug: "capstone",
-    title: "Capstone",
-    titleZh: "毕业作品集",
-    hours: 12,
+    slug: "harness-map",
+    title: "Harness map & scope",
+    titleZh: "Harness 地图与范围",
+    hours: 2,
+    unlocks: "7",
+  },
+  {
+    id: "7",
+    slug: "cost-context",
+    title: "Cost & context in your system",
+    titleZh: "成本与上下文进系统",
+    hours: 4,
+    unlocks: "8",
+  },
+  {
+    id: "8",
+    slug: "land",
+    title: "Land your main structure",
+    titleZh: "主结构落地",
+    hours: 8,
+    unlocks: "9",
+  },
+  {
+    id: "9",
+    slug: "smoke",
+    title: "Contracts, safety & smoke",
+    titleZh: "合约、安全与冒烟结业",
+    hours: 6,
     unlocks: null,
   },
 ];

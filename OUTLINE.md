@@ -260,6 +260,6 @@ Skill 包职责：在 **Chat** 里当教练——开课、推进、提问、代�
 ## 5. 当前状态
 
 - 怎么学 = 三问 + 提问；知识底座 = 逐 token 自回归，再接 harness-articles  
-- 结业物 = Agent 系统；冒烟验收  
-- **交互 = Chat 完成一切操作**；读文件可以，手写课程代码不是主路径  
-- 旧模块与「自己改 starter」流程待按大纲 + 交互约束重写  
+- 结业物 = `workspace/my-agent`；冒烟验收  
+- **交互 = Chat 完成一切操作**；Coach 写 `starter/answers.json`  
+- `curriculum/` 已按 M0–M9 重铺；试用时勿再走「手改 starter + 终端 grade」旧路径  

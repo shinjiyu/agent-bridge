@@ -9,3 +9,5 @@
 
 **主张与模块顺序**见 [OUTLINE.md](./OUTLINE.md)。  
 快速开始见 [GETTING_STARTED.md](./GETTING_STARTED.md)。
+
+学习主路径：在 Chat 对 Coach 说「继续下一课」→ 对话里回答 → Coach 写 `starter/` 与 `my-agent/` → 「帮我评分」。
